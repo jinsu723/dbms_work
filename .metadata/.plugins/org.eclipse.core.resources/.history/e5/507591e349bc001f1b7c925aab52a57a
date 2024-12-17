@@ -1,0 +1,22 @@
+-- 테이블 생성(DDL)
+CREATE TABLE TBL_MEMBER(
+	MEMBER_ID NUMBER,
+	MEMBER_NAME VARCHAR2(100),
+	MEMBER_AGE NUMBER(3)
+);
+
+SELECT 	*
+FROM 	TBL_MEMBER;
+
+-- 데이터 추가
+INSERT INTO TBL_MEMBER
+values(1, '길진수', 27);
+
+INSERT INTO tbl_member
+values(2, '신짱구', 5);
+
+INSERT INTO TBL_MEMBER
+values(3, '신짱아', 3);
+
+INSERT INTO tbl_member(member_age)
+values(5);
