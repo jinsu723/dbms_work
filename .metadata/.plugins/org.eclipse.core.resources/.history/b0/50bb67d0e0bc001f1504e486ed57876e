@@ -1,0 +1,38 @@
+-- 2. DDL
+
+CREATE TABLE TBL_USER(
+	USER_NAME	VARCHAR2(100)
+  , USER_AGE	NUMBER
+);
+
+SELECT 	*
+FROM 	tbl_user;
+
+-- 테이블명 수정
+-- ALTER TABLE 테이블명 RENAME TO 새로운 테이블명;
+ALTER TABLE tbl_user
+RENAME TO TBL_MY_USER;
+
+SELECT	*
+FROM 	tbl_user;
+
+SELECT 	*
+FROM 	tbl_my_user;
+
+-- 컬럼명 수정
+-- ALTER TABLE 테이블명 RENAME COLUMN 기존컬럼명 TO 새로운테이블명;
+ALTER TABLE TBL_MY_USER
+RENAME COLUMN user_name TO USER_NICKNAME;
+
+-- 컬럼 타입 수정
+-- ALTER TABLE 테이블명 MODIFY(컬럼명 자료형(용량));
+ALTER TABLE TBL_MY_USER
+MODIFY(user_nickname varchar2(500));
+
+-- 컬럼 추가
+-- ALTER TABLE 테이블명 ADD(컬럼명 자료형(용량));
+ALTER TABLE tbl_my_user
+ADD(USER_GENDER char(1));
+
+ALTER TABLE tbl_my_user
+ADD(USER_HOBBY varchar2(100));

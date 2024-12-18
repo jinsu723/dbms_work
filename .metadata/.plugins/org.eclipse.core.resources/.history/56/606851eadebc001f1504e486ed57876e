@@ -1,0 +1,12 @@
+-- 2. DDL
+
+CREATE TABLE TBL_USER(
+	USER_NAME	VARCHAR2(100)
+  , USER_AGE	NUMBER
+);
+
+SELECT 	*
+FROM 	tbl_user;
+
+-- 테이블명 수정
+
