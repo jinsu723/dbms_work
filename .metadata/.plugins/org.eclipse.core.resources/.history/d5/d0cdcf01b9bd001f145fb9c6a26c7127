@@ -1,0 +1,58 @@
+-- 집계함수 : 결과 행 1개
+-- 주의사항 : NULL은 포함시키지 않는다
+SELECT	*
+FROM 	employees;
+
+-- count()
+-- 전체 직원 수 확인
+SELECT 	count(*)
+FROM	employees;
+
+-- 특정 부서 110번의 직원 수 확인
+SELECT	DISTINCT department_id
+FROM	employees;
+
+SELECT	count(*) AS "110번의 직원 수"
+FROM	employees
+WHERE 	department_id = 110;
+
+-- SUM()
+-- 모든 직원의 급여 총합 계산
+--SELECT 	first_name
+SELECT	sum(salary)
+FROM	employees;
+
+-- 부서별 급여 총합 계산
+SELECT 	DISTINCT department_id
+			   , salary
+FROM	employees;
+
+SELECT 	department_id
+	  , sum(salary)
+FROM	employees
+GROUP BY department_id;
+
+-- AVG()
+-- 전체 직원의 평균 급여
+SELECT 	AVG(salary)
+FROM	employees;
+
+-- 부서별 평균 급여
+SELECT 	department_id
+	  , avg(salary)
+FROM	employees
+GROUP BY department_id;
+
+-- MAX(), MIN()
+SELECT 	max(salary) "최대"
+	  , min(salary) "최소"
+FROM	employees;
+
+-- 부서별 최고급여, 최소급여, 평균급여, 총합 조회하기
+SELECT 	department_id
+	  , max(salary)
+	  , min(salary)
+	  , sum(salary)
+FROM	employees
+GROUP BY department_id
+ORDER BY department_id;

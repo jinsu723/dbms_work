@@ -129,3 +129,241 @@ CREATE TABLE TBL_TYPE(
 
 DROP TABLE TBL_PERSON;
 DROP TABLE TBL_PET;
+
+-- ====================================================================================================================
+--3. 아래와 같은 테이블이 있을 때 3차 정규화까지 각 단계별로 테이블을 만들고 값을 삽입 후 조회 쿼리문 결과를 확인하세요.
+--
+--- 기본 테이블명은 아래와 같고 테이블 추가하면서 값 넣을 땐 테이블명 달라져도 됨
+
+
+-- 직원 테이블 생성 (1차 정규화를 적용하지 않은 형태로 유지)
+CREATE TABLE Employees1 (
+    EmployeeID NUMBER PRIMARY KEY,
+    Name VARCHAR2(50),
+    BirthDate DATE,
+    DepartmentInfo VARCHAR2(255),
+    Salary NUMBER
+);
+
+-- 데이터 삽입
+INSERT INTO Employees1 (EmployeeID, Name, BirthDate, DepartmentInfo, Salary)
+VALUES (1, '스티븐', TO_DATE('2010-12-31', 'YYYY-MM-DD'), '영업부, 서울시.. 01234', 300);
+
+INSERT INTO Employees1 (EmployeeID, Name, BirthDate, DepartmentInfo, Salary)
+VALUES (2, '마리', TO_DATE('2011-10-01', 'YYYY-MM-DD'), '영업부, 서울시.. 01234', 250);
+
+INSERT INTO Employees1 (EmployeeID, Name, BirthDate, DepartmentInfo, Salary)
+VALUES (3, '찰스', TO_DATE('2003-05-01', 'YYYY-MM-DD'), '사업부, 경기도...02345', 200);
+
+INSERT INTO Employees1 (EmployeeID, Name, BirthDate, DepartmentInfo, Salary)
+VALUES (4, '마리아', TO_DATE('1995-08-15', 'YYYY-MM-DD'), '인사부, 서울시.. 01234', 280);
+
+INSERT INTO Employees1 (EmployeeID, Name, BirthDate, DepartmentInfo, Salary)
+VALUES (5, '제임스', TO_DATE('1988-03-22', 'YYYY-MM-DD'), '영업부, 서울시.. 01234', 320);
+
+INSERT INTO Employees1 (EmployeeID, Name, BirthDate, DepartmentInfo, Salary)
+VALUES (6, '안나', TO_DATE('2000-12-10', 'YYYY-MM-DD'), '영업부, 서울시.. 01234', 270);
+
+SELECT 	*
+FROM 	employees1;
+
+--직원번호	이름		생일						부서번호	부서	주소			우편번호	급여
+--===========================================================================
+--1		스티븐	2010-12-31 00:00:00.000	1		영업부 서울시.. 	01234	300
+--2		마리		2011-10-01 00:00:00.000	2		영업부 서울시.. 	01234	250
+--3		찰스		2003-05-01 00:00:00.000	3		사업부 경기도..		02345	200
+--4		마리아	1995-08-15 00:00:00.000	4		인사부 서울시.. 	01234	280
+--5		제임스	1988-03-22 00:00:00.000	5		영업부 서울시.. 	01234	320
+--6		안나		2000-12-10 00:00:00.000	6		영업부 서울시.. 	01234	270
+
+CREATE table EMPLOYEES2(
+    EmployeeID			NUMBER PRIMARY KEY
+  , Name				VARCHAR2(50)
+  , BirthDate			DATE
+  , DepartmentNumber	NUMBER
+  , DepartmentName		VARCHAR2(255)
+  , Address				VARCHAR2(1000)
+  , AddressNumber		NUMBER
+  , Salary				NUMBER
+);
+
+-- 데이터 삽입
+INSERT INTO Employees2
+VALUES (1, '스티븐', TO_DATE('2010-12-31', 'YYYY-MM-DD'), 1, '영업부', '서울시..', 01234, 300);
+
+INSERT INTO Employees2
+VALUES (2, '마리', TO_DATE('2011-10-01', 'YYYY-MM-DD'), 2, '영업부', '서울시..', 01234, 250);
+
+INSERT INTO Employees2
+VALUES (3, '찰스', TO_DATE('2003-05-01', 'YYYY-MM-DD'), 3, '사업부', '경기도...', 02345, 200);
+
+INSERT INTO Employees2
+VALUES (4, '마리아', TO_DATE('1995-08-15', 'YYYY-MM-DD'), 4, '인사부', '서울시..',  01234, 280);
+
+INSERT INTO Employees2
+VALUES (5, '제임스', TO_DATE('1988-03-22', 'YYYY-MM-DD'), 5, '영업부', '서울시..',  01234, 320);
+
+INSERT INTO Employees2
+VALUES (6, '안나', TO_DATE('2000-12-10', 'YYYY-MM-DD'), 6, '영업부', '서울시..',  01234, 270);
+
+SELECT 	*
+FROM 	employees2;
+
+
+--2차 정규화_부서테이블
+--부서번호(PK)	부서	 주소			우편번호
+--================================
+--1			영업부 서울시.. 	01234
+--2			사업부 경기도..		02345
+--3			인사부 서울시.. 	01234
+CREATE TABLE departments1(
+    DepartmentNumber	NUMBER	PRIMARY KEY
+  , DepartmentName		VARCHAR2(255)
+  , Address				VARCHAR2(1000)
+  , AddressNumber		NUMBER
+);
+
+SELECT 	*
+FROM 	departments1;
+
+-- 데이터 삽입
+INSERT INTO departments1
+VALUES (1, '영업부', '서울시..', 01234);
+
+INSERT INTO departments1
+VALUES (2, '사업부', '경기도...', 02345);
+
+INSERT INTO departments1
+VALUES (3, '인사부', '서울시..',  01234);
+
+
+--2차 정규화_직원테이블
+--직원번호(PK)	이름		생일						부서번호(FK)	급여
+--===================================================================
+--1			스티븐	2010-12-31 00:00:00.000	1			300
+--2			마리		2011-10-01 00:00:00.000	1			250
+--3			찰스		2003-05-01 00:00:00.000	2			200
+--4			마리아	1995-08-15 00:00:00.000	3			280
+--5			제임스	1988-03-22 00:00:00.000	1			320
+--6			안나		2000-12-10 00:00:00.000	1			270
+
+
+CREATE TABLE employees3(
+    EmployeeID			NUMBER PRIMARY KEY
+  , Name				VARCHAR2(50)
+  , BirthDate			DATE
+  , DepartmentNumber	NUMBER
+  , Salary				NUMBER
+  , CONSTRAINT DepartmentNumber_FK FOREIGN KEY(DepartmentNumber) REFERENCES departments1(DepartmentNumber)
+);
+
+SELECT 	*
+FROM 	employees3;
+
+-- 데이터 삽입
+
+INSERT INTO Employees3
+VALUES (1, '스티븐', TO_DATE('2010-12-31', 'YYYY-MM-DD'),1, 300);
+
+INSERT INTO Employees3
+VALUES (2, '마리', TO_DATE('2011-10-01', 'YYYY-MM-DD'), 1, 250);
+
+INSERT INTO Employees3
+VALUES (3, '찰스', TO_DATE('2003-05-01', 'YYYY-MM-DD'), 2, 200);
+
+INSERT INTO Employees3
+VALUES (4, '마리아', TO_DATE('1995-08-15', 'YYYY-MM-DD'), 3, 280);
+
+INSERT INTO Employees3
+VALUES (5, '제임스', TO_DATE('1988-03-22', 'YYYY-MM-DD'), 1, 320);
+
+INSERT INTO Employees3
+VALUES (6, '안나', TO_DATE('2000-12-10', 'YYYY-MM-DD'), 1, 270);
+
+
+--3차 정규화_부서주소테이블
+--부서번호(PK)	주소		우편번호
+--======================================
+--1			서울시.. 	01234
+--2			경기도..	02345
+CREATE TABLE Address(
+    AddressPK			NUMBER	PRIMARY KEY
+  , Address				VARCHAR2(1000)
+  , AddressNumber		NUMBER
+);
+
+SELECT 	*
+FROM 	Address;
+
+-- 데이터 삽입
+INSERT INTO Address
+VALUES (1, '서울시..', 01234);
+
+INSERT INTO Address
+VALUES (2, '경기도...', 02345);
+
+
+--3차 정규화_부서테이블
+--부서번호(PK)	부서		주소번호(FK)
+--======================================
+--1			영업부	1
+--2			사업부	2
+--3			인사부	1
+CREATE TABLE Departments2(
+    DepartmentNumber	NUMBER	PRIMARY KEY
+  , DepartmentName		VARCHAR2(255)
+  , AddressPK			NUMBER
+  , CONSTRAINT AddressPK_FK FOREIGN KEY(AddressPK) REFERENCES Address(AddressPK)
+);
+
+SELECT 	*
+FROM 	departments2;
+
+-- 데이터 삽입
+INSERT INTO departments2
+VALUES (1, '영업부', 1);
+
+INSERT INTO departments2
+VALUES (2, '사업부', 2);
+
+INSERT INTO departments2
+VALUES (3, '인사부', 1);
+
+--3차 정규화_직원테이블
+--직원번호(PK)	이름		생일						부서번호(FK)	급여
+--===================================================================
+--1			스티븐	2010-12-31 00:00:00.000	1			300
+--2			마리		2011-10-01 00:00:00.000	1			250
+--3			찰스		2003-05-01 00:00:00.000	2			200
+--4			마리아	1995-08-15 00:00:00.000	3			280
+--5			제임스	1988-03-22 00:00:00.000	1			320
+--6			안나		2000-12-10 00:00:00.000	1			270
+CREATE TABLE EMPLOYEES4(
+    EmployeeID			NUMBER PRIMARY KEY
+  , Name				VARCHAR2(50)
+  , BirthDate			DATE
+  , DepartmentNumber	NUMBER
+  , Salary				NUMBER
+  , CONSTRAINT DepartmentNumber_FK1 FOREIGN KEY(DepartmentNumber) REFERENCES departments2(DepartmentNumber)
+); 
+
+SELECT 	*
+FROM 	employees4;
+
+INSERT INTO Employees4
+VALUES (1, '스티븐', TO_DATE('2010-12-31', 'YYYY-MM-DD'),1, 300);
+
+INSERT INTO Employees4
+VALUES (2, '마리', TO_DATE('2011-10-01', 'YYYY-MM-DD'), 1, 250);
+
+INSERT INTO Employees4
+VALUES (3, '찰스', TO_DATE('2003-05-01', 'YYYY-MM-DD'), 2, 200);
+
+INSERT INTO Employees4
+VALUES (4, '마리아', TO_DATE('1995-08-15', 'YYYY-MM-DD'), 3, 280);
+
+INSERT INTO Employees4
+VALUES (5, '제임스', TO_DATE('1988-03-22', 'YYYY-MM-DD'), 1, 320);
+
+INSERT INTO Employees4
+VALUES (6, '안나', TO_DATE('2000-12-10', 'YYYY-MM-DD'), 1, 270);

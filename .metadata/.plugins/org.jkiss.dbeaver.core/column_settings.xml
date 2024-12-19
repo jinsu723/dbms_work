@@ -14,7 +14,7 @@
 		<column name="Column" visible="true" order="1" width="112"/>
 		<column name="소유자" visible="true" order="2" width="100"/>
 		<column name="Type" visible="true" order="3" width="100"/>
-		<column name="Condition" visible="true" order="4" width="143"/>
+		<column name="Condition" visible="true" order="4" width="184"/>
 		<column name="Status" visible="true" order="5" width="100"/>
 	</item>
 	<item id="NodeList/OracleTableConstraintColumn">
@@ -49,7 +49,7 @@
 		<column name="Folder" visible="true" order="3" width="82"/>
 	</item>
 	<item id="sqlFilterValueEditPopup">
-		<column name="Value" visible="true" order="0" width="159"/>
+		<column name="Value" visible="true" order="0" width="140"/>
 		<column name="Count" visible="true" order="1" width="47"/>
 	</item>
 </items>

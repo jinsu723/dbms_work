@@ -1,0 +1,12 @@
+
+-- 연관 서브쿼리
+-- 최대 급여를 받는 직원 조회
+SELECT	EMPLOYEE_ID, FIRST_NAME, SALARY
+FROM	EMPLOYEES
+WHERE	SALARY = (SELECT MAX(SALARY) FROM EMPLOYEES)
+;
+
+SELECT MAX(SALARY) FROM EMPLOYEES;
+
+-- 비연관 서브쿼리
+-- 각 직원의 급여가 부서별 평균 급여보다 높은 직원 조회

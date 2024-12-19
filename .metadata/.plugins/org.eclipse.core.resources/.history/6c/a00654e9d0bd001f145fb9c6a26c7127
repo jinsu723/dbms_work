@@ -1,0 +1,57 @@
+
+-- 연관 서브쿼리
+-- 최대 급여를 받는 직원 조회
+SELECT	EMPLOYEE_ID, FIRST_NAME, SALARY
+FROM	EMPLOYEES
+WHERE	SALARY = (SELECT MAX(SALARY) FROM EMPLOYEES)
+;
+
+SELECT MAX(SALARY) FROM EMPLOYEES;
+
+
+SELECT 	employee_id
+	  , first_name
+	  , salary
+	  , department_id
+FROM	employees
+WHERE 	salary > (SELECT avg(salary) FROM employees)
+;
+-- 비연관 서브쿼리
+-- 각 직원의 급여가 부서별 평균 급여보다 높은 직원 조회
+SELECT 	employee_id
+	  , first_name
+	  , salary
+	  , department_id
+FROM	employees E
+WHERE 	salary > (SELECT	avg(salary)
+				  FROM		employees
+				  WHERE		department_id = E.department_id
+				  )
+ORDER BY E.department_id
+;
+
+-- 부서별 평균
+SELECT 	department_id
+	  , avg(salary)
+FROM	employees
+GROUP BY department_id
+ORDER BY department_id
+;
+
+-- 단일행 서브쿼리(서브쿼리의 결과가 하나의 행만 반환)
+-- 가장 오래된 입사일을 가진 직원의 사원번호, 이름, 입사일 조회 102번
+SELECT 	*
+FROM 	employees
+ORDER BY hire_date ASC
+;
+
+SELECT 	employee_id
+	  , first_name
+	  , hire_date
+FROM	employees
+WHERE 	hire_date = (SELECT min(HIRE_DATE)
+					 FROM	employees
+					 )
+;
+
+-- 다중행 서브쿼리

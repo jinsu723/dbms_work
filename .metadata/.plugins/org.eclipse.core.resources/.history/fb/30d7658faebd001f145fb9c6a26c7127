@@ -1,0 +1,30 @@
+-- FK 관계 맺은 테이블 수정/삭제
+
+CREATE TABLE tbl_phone(
+	phone_number			varchar2(100)
+  , phone_color				varchar2(100)
+  , phone_size				NUMBER
+  , phone_price				NUMBER
+  , phone_sale				NUMBER
+  , phone_production_date	DATE
+  , CONSTRAINT phone_number_PK PRIMARY KEY(phone_number)
+);
+
+CREATE TABLE tbl_case(
+	case_number 	varchar2(100)
+  , csse_color		varchar2(100)
+  , case_price		NUMBER
+  , phone_number	varchar2(100)
+  , CONSTRAINT case_number_PK PRIMARY KEY(case_number)
+  , CONSTRAINT phone_number_FK FOREIGN KEY(phone_number) REFERENCES tbl_phone(phone_number)
+);
+
+SELECT 	*
+FROM 	tbl_phone;
+
+SELECT 	*
+FROM 	tbl_case;
+
+-- 관계를 맺은 테이블들의 DML
+-- 자식 테이블은 부모 테이블의 값을 참조하기 때문에 항상 부모 테이블에 DATA가 먼저 들어가야 한다
+-- PHONE 테이블이 부모이므로 PHONE에 먼저 데이터를 넣어야 한다
