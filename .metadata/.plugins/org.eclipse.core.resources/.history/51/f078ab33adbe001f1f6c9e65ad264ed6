@@ -1,0 +1,17 @@
+SELECT * FROM hr.employees;
+
+SELECT * FROM user_tab_privs_recd;
+
+INSERT TO INTO ht.employees(employee_id)
+VALUES
+
+CREATE TABLE tbl_member(
+	mem_id		NUMBER PRIMARY KEY
+  ,	mem_name	varchar2(100)
+);
+
+-- 세션 생성 권한
+GRANT CREATE SESSION TO 계정명;
+
+-- 테이블 생성 권한
+GRANT CREATE TABLE TO 계정명;

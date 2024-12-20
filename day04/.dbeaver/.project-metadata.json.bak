@@ -1,1 +1,1 @@
-{"resources":{"Scripts/Script.sql":{"default-datasource":"oracle_thin-193dc933c3e-40bc1fe1ccdbd4ee"}}}
+{"resources":{"Scripts/day04(DML2).sql":{"default-schema":"HR","default-datasource":"oracle_thin-193dc933c3e-40bc1fe1ccdbd4ee"},"Scripts/day04(subquery).sql":{"default-schema":"HR","default-datasource":"oracle_thin-193dc933c3e-40bc1fe1ccdbd4ee"},"Scripts/day04(집계함수,groupby).sql":{"default-schema":"HR","default-datasource":"oracle_thin-193dc933c3e-40bc1fe1ccdbd4ee"},"Scripts/task.sql":{"default-schema":"HR","default-datasource":"oracle_thin-193dc933c3e-40bc1fe1ccdbd4ee"}}}
