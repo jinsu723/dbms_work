@@ -313,6 +313,9 @@ WHERE	cons.constraint_type = 'R'
 
 SELECT * FROM user_tab_privs_recd;
 
+ALL_constraints
+all_cons_columns
+
 SELECT * FROM tbl_books;
 
 INSERT INTO tbl_books

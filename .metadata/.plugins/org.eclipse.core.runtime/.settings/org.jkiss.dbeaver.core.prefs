@@ -1,9 +1,7 @@
 driver.selector.orderBy=score
 eclipse.preferences.version=1
-project.active=day05
-resultset.presentation.active=spreadsheet
+project.active=jdbc01
 sample.database.canceled=true
-sql.format.formatter=COMPACT
 tipOfTheDayInitializer.notFirstRun=true
-ui.auto.update.check.time=1734654142467
+ui.auto.update.check.time=1735888424455
 ui.show.tip.of.the.day.on.startup=true

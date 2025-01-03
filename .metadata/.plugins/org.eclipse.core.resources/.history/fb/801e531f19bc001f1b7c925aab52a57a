@@ -1,5 +1,0 @@
--- SELECT : 테이블에서 데이터를 조회할 때 사용하는 명령어
--- hr 계정 내에 존재하는 employees 태이블
--- 107행, 11개의 컬럼(열)으로 이루어져 있다
--- 107명의 직원 데이터를 저장해 놓은 연습용 테이블
-SELECT first_name FROM EMPLOYEES;

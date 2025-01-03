@@ -1,0 +1,1 @@
+{"resources":{"Scripts/Script.sql":{"default-schema":"HR","default-datasource":"oracle_thin-193f0e733f2-12aed3c7bfcf742b"},"Scripts/test01.sql":{"default-schema":"TEST01","default-datasource":"oracle_thin-193f0ecdff9-3e49e67420a15c52"}}}
