@@ -62,7 +62,5 @@ SELECT 	user_id
 	  , user_gender
 	  , user_birth
 FROM	tbl_user
-WHERE 	user_number = 1
+WHERE 	user_number = ?
 ;
-
-DELETE FROM tbl_user WHERE user_number = ?
