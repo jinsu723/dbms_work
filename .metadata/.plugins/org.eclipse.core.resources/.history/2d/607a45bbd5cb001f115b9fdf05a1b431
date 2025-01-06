@@ -54,15 +54,3 @@ SET		USER_id = ?
 	  , user_gender = ?
 	  , user_birth = ?
 ;
-
-SELECT 	user_id
-	  , user_pw
-	  , user_name
-	  , user_age
-	  , user_gender
-	  , user_birth
-FROM	tbl_user
-WHERE 	user_number = 1
-;
-
-DELETE FROM tbl_user WHERE user_number = ?

@@ -31,38 +31,6 @@ VALUES
 
 INSERT INTO tbl_user(user_number, USER_id, USER_pw, USER_name, user_age, user_gender, user_birth)
 VALUES
---(seq_user.nextval, 'ABC', '1234', '짱구', 5, 'M', '2000-01-01');
+(seq_user.nextval, 'abc', '1234', '짱구', 5, 'M', '2000-01-01');
 
-SELECT * from tbl_user;
-
-DELETE FROM tbl_user
-WHERE user_number = 21;
-
-SELECT user_number
-FROM	tbl_user
-WHERE 	user_id = 'aaa' AND user_pw = '1234';
-
-SELECT user_id
-FROM	tbl_user
-WHERE 	user_name = '홍길동' AND user_birth = '20000101';
-
-UPDATE	tbl_user
-SET		USER_id = ?
-	  , user_pw = ?
-	  , user_name = ?
-	  , user_age = ?
-	  , user_gender = ?
-	  , user_birth = ?
-;
-
-SELECT 	user_id
-	  , user_pw
-	  , user_name
-	  , user_age
-	  , user_gender
-	  , user_birth
-FROM	tbl_user
-WHERE 	user_number = 1
-;
-
-DELETE FROM tbl_user WHERE user_number = ?
+SELECT FROM * tbl_user;
